@@ -1,0 +1,90 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+'abstract class AbstractList
+'abstract AbstractCollection
+'interface List
+'interface Collection
+'
+'List <|-- AbstractList
+'Collection <|-- AbstractCollection
+'
+'Collection <|- List
+'AbstractCollection <|- AbstractList
+'AbstractList <|-- ArrayList
+'
+'class ArrayList {
+'Object[] elementData
+'size()
+'}
+'
+'enum TimeUnit {
+'DAYS
+'HOURS
+'MINUTES
+'}
+abstract class Actor {
+    - memberShip : UUID
+    - fullName : String
+    - memberShipDate : Date
+    - email : String
+    - password : String
+    - address : String
+    - status : Status
+}
+class Owner {}
+
+class Searcher {}
+
+class Admin {}
+
+'this class is only for authentication
+class User {
+    - id : UUID
+    - username : String
+    - password : String
+}
+
+class Offer {
+    - id : UUID
+    - houseType : HouseType
+    - address : String
+}
+
+class Gallery {
+    - id : UUID
+    - image : String
+    - date : Date
+}
+
+class Subscriptions {
+    - date :  Date
+}
+
+
+enum Status {
+    Admin,
+    Owner,
+    Searcher
+}
+
+enum HouseType {
+    Apartment,
+    house,
+    villa
+}
+
+Owner <|-- Actor
+Searcher <|-- Actor
+Admin <|-- Actor
+
+User +-- Status
+Offer +-- HouseType
+Offer "1.*" -- "1.*" Searcher
+(Searcher,Offer) .. Subscriptions
+Offer "1" o-- "1.*" Gallery
+Offer -- Admin
+Owner "1" o-- "1.*" Offer
+
+
+@enduml
