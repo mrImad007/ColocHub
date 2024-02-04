@@ -1,25 +1,27 @@
 @startuml
-'https://plantuml.com/use-case-diagram
+Searcher --> (Register)
+Owner --> (Register)
+Owner -> (Add offer)
+(Add offer) -- (modify)
+(Add offer) -- (delete)
+Searcher -> (Subscribe to an Offer)
+(Subscribe to an Offer) -- (Modify)
+(Subscribe to an Offer) -- (Delete)
+Owner --> (See all Offers)
+Searcher --> (See all Offers)
+Admin --> (See all Offers)
+Admin --> (Validate Offers)
+(Validate Offers) -- (MODIFY)
+(Validate Offers) -- (DELETE)
 
-':Main Admin: as Admin
-'(Use the application) as (Use)
-'
-'User -> (Start)
-'User --> (Use)
-'
-'Admin ---> (Use)
-'
-'note right of Admin : This is an example.
-'
-'note right of (Use)
-'A note can also
-'be on several lines
-'end note
-'
-'note "This note is connected\nto several objects." as N2
-'(Start) .. N2
-'N2 .. (Use)
+note "include" as N
 
+(Validate Offers) .. N
 
+(Add offer)  .. N
+
+(Subscribe to an Offer) .. N
+
+N .. (Authentication)
 
 @enduml
