@@ -119,7 +119,7 @@ public class UserService {
                 user.setStatus(Status.REFUSED);
                 userRepository.save(user);
             }else {
-                throw new InvalidCredentials("Invalid Status : " + status);
+                throw new InvalidCredentials("Invalid HouseType : " + status);
             }
             return user;
         }else {
