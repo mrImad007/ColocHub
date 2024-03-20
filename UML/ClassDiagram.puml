@@ -7,39 +7,46 @@ abstract class Actor {
     - email : String
     - password : String
     - address : String
-    - status : Status
 }
-class Owner {}
+class Owner {
+    - picture : String
+}
 
-class Searcher {}
+class Searcher {
+    - picture : String
+}
 
 class Admin {}
 
-'this class is only for authentication
-class User {
-    - id : UUID
-    - username : String
-    - password : String
-}
 
 class Offer {
-    - id : UUID
-    - houseType : HouseType
-    - address : String
+    - id : Integer
+    - description : String
+    - monthly_price : Real
 }
 
-class Gallery {
-    - id : UUID
+class House {
+    - id : Integer
+    - houseType : HouseType
+    - address : String
+    - rooms : Integer
+    - kitchen : Integer
+    - bathroom : Integer
+}
+
+class Photo {
+    - id : Integer
     - image : String
-    - date : Date
 }
 
 class Subscriptions {
-    - date :  Date
+    - paymentStatus : PaymentStatus
+    - start_date :  Date
+    - end_date :  Date
 }
 
 
-enum Status {
+enum Role {
     Admin,
     Owner,
     Searcher
@@ -51,17 +58,33 @@ enum HouseType {
     villa
 }
 
-Owner <|-- Actor
-Searcher <|-- Actor
-Admin <|-- Actor
+enum PaymentStatus {
+    PENDING,
+    PAID,
+    CANCELED
+}
 
-User +-- Status
-Offer +-- HouseType
+'this class is only for authentication
+class Users {
+    - id : UUID
+    - username : String
+    - password : String
+    - role : Role
+}
+
+Owner <|-- Users
+Searcher <|-- Users
+Admin <|-- Users
+
+Users +-- Role
+House +-- HouseType
+Subscriptions +-- PaymentStatus
 Offer "1.*" -- "1.*" Searcher
 (Searcher,Offer) .. Subscriptions
-Offer "1" o-- "1.*" Gallery
+House "1" o-- "1.*" Photo
 Offer -- Admin
+Owner "1" o-- "1.*" House
+House "1" o-- "1" Offer
 Owner "1" o-- "1.*" Offer
-
 
 @enduml
