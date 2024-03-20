@@ -1,13 +1,13 @@
 @startuml
 
-abstract class Actor {
-    - memberShip : UUID
-    - fullName : String
-    - memberShipDate : Date
-    - email : String
-    - password : String
-    - address : String
-}
+'abstract class Actor {
+'    - memberShip : UUID
+'    - fullName : String
+'    - memberShipDate : Date
+'    - email : String
+'    - password : String
+'    - address : String
+'}
 class Owner {
     - picture : String
 }
@@ -64,9 +64,8 @@ enum PaymentStatus {
     CANCELED
 }
 
-'this class is only for authentication
 class Users {
-    - id : UUID
+    - id : Integer
     - username : String
     - password : String
     - role : Role
