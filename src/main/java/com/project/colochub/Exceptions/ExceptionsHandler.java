@@ -18,7 +18,7 @@ public class ExceptionsHandler {
 
     @ExceptionHandler(OperationFailed.class)
     public ResponseEntity<ApiError> handleOperationFailed(OperationFailed operationFailed) {
-        ApiError apiError = new ApiError(operationFailed.getMessage(), "400"); // Use "400" for Bad Request
+        ApiError apiError = new ApiError(operationFailed.getMessage(), "400");
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
