@@ -1,4 +1,4 @@
-package com.project.colochub.Mappers.Entities;
+package com.project.colochub.Mappers.Maps;
 
 import com.project.colochub.DTO.Response.HouseDto;
 import com.project.colochub.Mappers.Mapper;

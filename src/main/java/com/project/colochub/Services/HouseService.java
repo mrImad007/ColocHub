@@ -4,6 +4,7 @@ import com.project.colochub.DTO.Request.HouseReq;
 import com.project.colochub.DTO.Response.HouseDto;
 import com.project.colochub.Exceptions.Exception.InvalidCredentials;
 import com.project.colochub.Exceptions.Exception.NotFound;
+import com.project.colochub.Exceptions.Exception.OperationFailed;
 import com.project.colochub.Mappers.Mapper;
 import com.project.colochub.Models.Entities.House;
 import com.project.colochub.Repositories.HouseRepository;
@@ -25,7 +26,7 @@ public class HouseService {
         return houseRepo.findAll().stream().map(mapper::mapTo).toList();
     }
 
-    public HouseDto addHouse(HouseReq houseReq){
+    public HouseDto addHouse(HouseReq houseReq) throws OperationFailed{
         if (houseReq != null){
             return mapper.mapTo(houseRepo.save(houseReq.toModel()));
         }else {
@@ -33,7 +34,7 @@ public class HouseService {
         }
     }
 
-    public boolean deleteHouse(Integer houseId){
+    public boolean deleteHouse(Integer houseId) throws OperationFailed {
         if (houseId > 0){
             if (houseRepo.findById(houseId).isPresent()){
                 houseRepo.deleteById(houseId);
