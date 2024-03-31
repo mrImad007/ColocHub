@@ -8,15 +8,15 @@
 '    - password : String
 '    - address : String
 '}
-class Owner {
-    - picture : String
-}
-
-class Searcher {
-    - picture : String
-}
-
-class Admin {}
+'class Owner {
+'    - picture : String
+'}
+'
+'class Searcher {
+'    - picture : String
+'}
+'
+'class Admin {}
 
 
 class Offer {
@@ -71,19 +71,17 @@ class Users {
     - role : Role
 }
 
-Owner <|-- Users
-Searcher <|-- Users
-Admin <|-- Users
+
 
 Users +-- Role
 House +-- HouseType
 Subscriptions +-- PaymentStatus
-Offer "1.*" -- "1.*" Searcher
-(Searcher,Offer) .. Subscriptions
+Offer "1.*" -- "1.*" Users
+(Users,Offer) .. Subscriptions
 House "1" o-- "1.*" Photo
-Offer -- Admin
-Owner "1" o-- "1.*" House
+Offer -- Users
+Users "1" o-- "1.*" House
 House "1" o-- "1" Offer
-Owner "1" o-- "1.*" Offer
+Users "1" o-- "1.*" Offer
 
 @enduml
