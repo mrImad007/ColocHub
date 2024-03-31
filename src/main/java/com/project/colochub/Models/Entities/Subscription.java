@@ -1,10 +1,8 @@
-package com.project.colochub.Models.Entities.App;
+package com.project.colochub.Models.Entities;
 
-import com.project.colochub.Models.Entities.Users.Searcher;
 import com.project.colochub.Models.Enums.PaymentStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import com.project.colochub.Security.Model.Entity.User;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,15 +16,17 @@ import java.util.Date;
 @NoArgsConstructor
 public class Subscription {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotEmpty
+    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
     private Date start_date;
     private Date end_date;
 
     //RelationShips
     @ManyToOne
-    private Searcher searcher;
+    private User searcher;
     @ManyToOne
     private Offer offer;
 }

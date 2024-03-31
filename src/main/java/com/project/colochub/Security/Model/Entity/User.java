@@ -1,6 +1,10 @@
 package com.project.colochub.Security.Model.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.project.colochub.Models.Entities.House;
+import com.project.colochub.Models.Entities.Offer;
+import com.project.colochub.Models.Entities.Subscription;
 import com.project.colochub.Security.Model.Enums.Role;
 import com.project.colochub.Security.Model.Enums.Status;
 import jakarta.persistence.*;
@@ -26,7 +30,6 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
     @NotBlank(message = "Name is mandatory")
     private String name;
@@ -74,4 +77,12 @@ public Collection<? extends GrantedAuthority> getAuthorities() {
     }
 
 
+    //RelationShips
+    @OneToMany(mappedBy = "owner")
+    @JsonManagedReference
+    private List<House> houses_list;
+    @OneToMany(mappedBy = "owner")
+    private List<Offer> offers_list;
+    @OneToMany(mappedBy = "searcher")
+    private List<Subscription> subscriptions_list;
 }

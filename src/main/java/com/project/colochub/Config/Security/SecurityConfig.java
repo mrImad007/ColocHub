@@ -30,7 +30,7 @@ public class SecurityConfig {
 
     private static final String[] WHITE_LIST_URL = {
             "/api/auth/**",
-            "api/fishes/**",
+            "api/houses/**",
             "/api/levels/**",
     };
     private static final String[] ADMIN_JURY_URL = {
