@@ -26,5 +26,5 @@ public class Offer {
     @ManyToOne
     private User owner;
     @OneToMany(mappedBy = "offer")
-    private List<Subscription> subscriptions_list;
+    private List<Subscriptions> subscriptions_list;
 }

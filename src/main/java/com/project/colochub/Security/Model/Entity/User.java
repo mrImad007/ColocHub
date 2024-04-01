@@ -4,7 +4,7 @@ package com.project.colochub.Security.Model.Entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.colochub.Models.Entities.House;
 import com.project.colochub.Models.Entities.Offer;
-import com.project.colochub.Models.Entities.Subscription;
+import com.project.colochub.Models.Entities.Subscriptions;
 import com.project.colochub.Security.Model.Enums.Role;
 import com.project.colochub.Security.Model.Enums.Status;
 import jakarta.persistence.*;
@@ -76,6 +76,21 @@ public Collection<? extends GrantedAuthority> getAuthorities() {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", membership_date=" + membership_date +
+                ", role=" + role +
+                ", status=" + status +
+                '}';
+    }
+
 
     //RelationShips
     @OneToMany(mappedBy = "owner")
@@ -84,5 +99,5 @@ public Collection<? extends GrantedAuthority> getAuthorities() {
     @OneToMany(mappedBy = "owner")
     private List<Offer> offers_list;
     @OneToMany(mappedBy = "searcher")
-    private List<Subscription> subscriptions_list;
+    private List<Subscriptions> subscriptions_list;
 }
