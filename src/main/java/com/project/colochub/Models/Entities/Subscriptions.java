@@ -16,11 +16,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Subscription {
+public class Subscriptions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
     private Date start_date;
@@ -31,4 +30,14 @@ public class Subscription {
     private User searcher;
     @ManyToOne
     private Offer offer;
+
+    @Override
+    public String toString() {
+        return "Subscriptions{" +
+                "id=" + id +
+                ", paymentStatus=" + paymentStatus +
+                ", start_date=" + start_date +
+                ", end_date=" + end_date +
+                '}';
+    }
 }
